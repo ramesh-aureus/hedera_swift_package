@@ -1,6 +1,6 @@
 import Foundation
 // Import Hedera SDK if necessary
-import Hedera
+import hedera
 public class HederaManager {
     
     public init() {
