@@ -7,15 +7,11 @@ public class HederaManager {
         // Initialize any necessary Hedera components
     }
 
-    public func getAccountBalance(completion: @escaping (Result<Int64, Error>) -> Void) {
-        let client = Client.forTestnet()
-        do {
-            let ab = try await AccountBalanceQuery()
-                .accountId(AccountId("0.0.1001")) // Static account ID
-                .execute(client)
-            completion(.success(ab.balance))
-        } catch {
-            completion(.failure(error))
-        }
-    }
+    public func getAccountBalance(accountId: String) async throws -> Hbar {
+           let client = Client.forTestnet()
+           let accountBalanceQuery = AccountBalanceQuery()
+               .accountId(AccountId(accountId)!)
+           let ab = try await accountBalanceQuery.execute(client)
+        return ab.hbars // Ensure 'balance' is the correct property name
+       }
     }
