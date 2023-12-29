@@ -4,6 +4,10 @@ import PackageDescription
 
 let package = Package(
     name: "hedera",
+    platforms: [
+           .macOS(.v10_15), // macOS version 10.15
+           .iOS(.v13) // Add iOS platform version 13.0
+       ],
     products: [
         .library(
             name: "hedera",
